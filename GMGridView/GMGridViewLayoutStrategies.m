@@ -101,7 +101,7 @@
         
         left   = MAX(widthSpace,  self.minEdgeInsets.left);
         right  = MAX(widthSpace,  self.minEdgeInsets.right);
-        top    = MAX(heightSpace, self.minEdgeInsets.top);
+        top    = self.minEdgeInsets.top;
         bottom = MAX(heightSpace, self.minEdgeInsets.bottom);
         
         _edgeInsets = UIEdgeInsetsMake(top, left, bottom, right);
