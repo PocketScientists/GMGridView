@@ -1568,6 +1568,10 @@ static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOp
 
 - (void)scrollToObjectAtIndex:(NSInteger)index atScrollPosition:(GMGridViewScrollPosition)scrollPosition animated:(BOOL)animated
 {
+    [self scrollToObjectAtIndex:index atVerticalScrollPosition:scrollPosition horizontalScrollPosition:GMGridViewHorizontalScrollPositionRight animated:YES];
+}
+
+- (void)scrollToObjectAtIndex:(NSInteger)index atVerticalScrollPosition:(GMGridViewScrollPosition)verticalScrollPosition horizontalScrollPosition:(GMGridViewHorizontalScrollPosition)horizontalScrtollPosition animated:(BOOL)animated {
     index = MAX(0, index);
     index = MIN(index, _numberTotalItems);
     
@@ -1577,14 +1581,30 @@ static const UIViewAnimationOptions kDefaultAnimationOptions = UIViewAnimationOp
     if (!self.pagingEnabled)
     {
         CGRect gridRect = CGRectMake(origin.x, origin.y, _itemSize.width, _itemSize.height);
-
-        switch (scrollPosition)
+        
+        switch (horizontalScrtollPosition) {
+            case GMGridViewHorizontalScrollPositionRight:
+            default:
+                break;
+                
+            case GMGridViewHorizontalScrollPositionLeft:
+                gridRect.origin.x = MIN(gridRect.origin.x + self.frame.size.width - _itemSize.width,  self.contentSize.width - _itemSize.width);
+                break;
+                
+            case GMGridViewHorizontalScrollPositionMiddle:
+                gridRect.origin.x = MIN(MAX(gridRect.origin.x - (CGFloat)ceilf((targetRect.size.width - self.frame.size.width) * 0.5), 0.0), self.contentSize.width - _itemSize.width);
+                break;
+        }
+        
+        targetRect.origin.x = gridRect.origin.x;
+        
+        switch (verticalScrollPosition)
         {
             case GMGridViewScrollPositionNone:
             default:
                 targetRect = gridRect; // no special coordinate handling
                 break;
-
+                
             case GMGridViewScrollPositionTop:
                 targetRect.origin.y = gridRect.origin.y;	// set target y origin to cell's y origin
                 break;

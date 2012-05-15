@@ -52,6 +52,13 @@ typedef enum
 
 typedef enum
 {
+    GMGridViewHorizontalScrollPositionRight,
+    GMGridViewHorizontalScrollPositionLeft,
+    GMGridViewHorizontalScrollPositionMiddle
+} GMGridViewHorizontalScrollPosition;
+
+typedef enum
+{
     GMGridViewItemAnimationNone = 0,
     GMGridViewItemAnimationFade,
     GMGridViewItemAnimationScroll = 1<<7 // scroll to the item before showing the animation
@@ -107,6 +114,7 @@ typedef enum
 - (void)swapObjectAtIndex:(NSInteger)index1 withObjectAtIndex:(NSInteger)index2 animated:(BOOL)animated;
 - (void)swapObjectAtIndex:(NSInteger)index1 withObjectAtIndex:(NSInteger)index2 withAnimation:(GMGridViewItemAnimation)animation;
 - (void)scrollToObjectAtIndex:(NSInteger)index atScrollPosition:(GMGridViewScrollPosition)scrollPosition animated:(BOOL)animated;
+- (void)scrollToObjectAtIndex:(NSInteger)index atVerticalScrollPosition:(GMGridViewScrollPosition)verticalScrollPosition horizontalScrollPosition:(GMGridViewHorizontalScrollPosition)horizontalScrtollPosition animated:(BOOL)animated;
 
 // Force the grid to update properties in an (probably) animated way.
 - (void)layoutSubviewsWithAnimation:(GMGridViewItemAnimation)animation;
