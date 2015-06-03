@@ -36,33 +36,33 @@
 @protocol GMGridViewTransformationDelegate;
 @protocol GMGridViewLayoutStrategy;
 
-typedef enum
+typedef NS_ENUM(NSInteger, GMGridViewStyle)
 {
     GMGridViewStylePush = 0,
     GMGridViewStyleSwap
-} GMGridViewStyle;
+};
 
-typedef enum
+typedef NS_ENUM(NSInteger, GMGridViewScrollPosition)
 {
 	GMGridViewScrollPositionNone,
 	GMGridViewScrollPositionTop,
 	GMGridViewScrollPositionMiddle,
 	GMGridViewScrollPositionBottom
-} GMGridViewScrollPosition;
+};
 
-typedef enum
+typedef NS_ENUM(NSInteger, GMGridViewHorizontalScrollPosition)
 {
     GMGridViewHorizontalScrollPositionRight,
     GMGridViewHorizontalScrollPositionLeft,
     GMGridViewHorizontalScrollPositionMiddle
-} GMGridViewHorizontalScrollPosition;
+};
 
-typedef enum
+typedef NS_ENUM(NSInteger, GMGridViewItemAnimation)
 {
     GMGridViewItemAnimationNone = 0,
     GMGridViewItemAnimationFade,
     GMGridViewItemAnimationScroll = 1<<7 // scroll to the item before showing the animation
-} GMGridViewItemAnimation;
+};
 
 //////////////////////////////////////////////////////////////
 #pragma mark Interface GMGridView
